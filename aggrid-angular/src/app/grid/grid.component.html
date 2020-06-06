@@ -1,0 +1,10 @@
+<ag-grid-angular
+  #agGrid
+  style="width: 700px; height: 300px;"
+  class="ag-theme-alpine"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+  [gridOptions]="gridOptions"
+  >
+</ag-grid-angular>
+<button (click)="getSelectedRows()">Get Selected Rows</button>
