@@ -1,10 +1,28 @@
 <ag-grid-angular
   #agGrid
   style="width: 700px; height: 300px;"
-  class="ag-theme-alpine"
+  class="ag-theme-balham"
   [rowData]="rowData"
   [columnDefs]="columnDefs"
   [gridOptions]="gridOptions"
+  [context]="getContext()"
   >
 </ag-grid-angular>
 <button (click)="getSelectedRows()">Get Selected Rows</button>
+
+<!--
+<form [formGroup]="formGroup2">
+  <mat-form-field appearance="fill">
+    <mat-label>Input</mat-label>
+    <input matInput formControlName="make">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Input</mat-label>
+    <input matInput formControlName="model">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Input</mat-label>
+    <input matInput formControlName="price">
+  </mat-form-field>
+</form>
+-->
