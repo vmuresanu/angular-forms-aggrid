@@ -39,7 +39,7 @@ export class CellInputRendererComponent implements ICellEditorAngularComp {
     if (this.formGroup) {
       this.formControl = this.formGroup.get(this.controlName) as FormControl;
       this.value = params.value;
-      this.formControl.setValue(this.value);
+     /* this.formControl.setValue(this.value);*/
     }
 
     return true;
