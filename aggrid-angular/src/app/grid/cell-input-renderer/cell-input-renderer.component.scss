@@ -1,0 +1,16 @@
+.ag-cell {
+  padding-left: 0 !important;
+  padding-right: 2px !important;
+  padding-bottom: 2px !important;
+  .cell-renderer {
+    height: 100%;
+    width: 100%;
+    &-value {
+      margin: 0 11px !important;
+    }
+  }
+}
+
+.field-errored {
+  border: solid red 1px !important;
+}
