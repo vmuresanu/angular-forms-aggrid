@@ -76,9 +76,9 @@ export class GridComponent implements OnInit {
         //this.colApi.getAllColumns().forEach(c => c.get
         this.gridApi.forEachNode((node: RowNode) => {
           const innerFormGroup = new FormGroup({
-            make: new FormControl('', Validators.required),
-            model: new FormControl(),
-            price: new FormControl()
+            make: new FormControl(node.data.make, Validators.required),
+            model: new FormControl(node.data.model),
+            price: new FormControl(node.data.price)
           });
           this.formGroup.addControl(node.id, innerFormGroup);
         });
