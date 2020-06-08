@@ -14,11 +14,9 @@ import { CellInputEditorComponent } from './cell-input-editor/cell-input-editor.
 export class GridComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridAngular;
   gridReady$ = new Subject();
-  formGroup2 = new FormGroup({});
+  formGroup = new FormGroup({});
   gridApi: GridApi;
   colApi: ColumnApi;
-
-  formGroup: FormGroup;
 
   columnDefs: ColDef[] = [
     {
@@ -82,9 +80,9 @@ export class GridComponent implements OnInit {
             model: new FormControl(),
             price: new FormControl()
           });
-          this.formGroup2.addControl(node.id, innerFormGroup);
+          this.formGroup.addControl(node.id, innerFormGroup);
         });
-        console.log(this.formGroup2);
+        console.log(this.formGroup);
         this.gridApi.refreshCells({ force: true });
         this.gridApi.sizeColumnsToFit();
       })
@@ -95,8 +93,8 @@ export class GridComponent implements OnInit {
     const selectedData = selectedNodes.map(node => node.data);
     const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ');
     alert(`
-      Formgroup isValid: ${this.formGroup2.valid}
-      Formgroup value: ${JSON.stringify(this.formGroup2.value)}
+      Formgroup isValid: ${this.formGroup.valid}
+      Formgroup value: ${JSON.stringify(this.formGroup.value)}
      `);
   }
 
@@ -110,7 +108,7 @@ export class GridComponent implements OnInit {
 
   getContext() {
     return {
-      formGroup: this.formGroup2
+      formGroup: this.formGroup
     }
   }
 

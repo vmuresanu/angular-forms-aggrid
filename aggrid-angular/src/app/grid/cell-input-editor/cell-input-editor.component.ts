@@ -1,21 +1,23 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { ICellEditorAngularComp } from 'ag-grid-angular';
 import { FormControl, FormGroup } from '@angular/forms';
+import { GridApi } from 'ag-grid-community';
 
 @Component({
   selector: 'app-cell-input-editor',
   template: `
-    <input *ngIf="formGroup" class="cell-input" #targetInput [ngModel]="value" (ngModelChange)="onValueChanged($event)"/>
+    <input *ngIf="formGroup" class="cell-input" #targetInput [ngModel]="value" (ngModelChange)="onValueChanged($event)" (focusout)="gridApi.stopEditing()"/>
   `,
   styleUrls: ['./cell-input-editor.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class CellInputEditorComponent implements ICellEditorAngularComp, AfterViewInit {
-  @Input() formGroup: FormGroup;
-  controlName: string;
-  public value;
-  columnName: string;
+  gridApi: GridApi;
+  formGroup: FormGroup;
   formControl: FormControl;
+  controlName: string;
+  value;
+  columnName: string;
   private rowId: any;
 
   @ViewChild('targetInput', { read: ViewContainerRef }) public targetInput;
@@ -25,6 +27,7 @@ export class CellInputEditorComponent implements ICellEditorAngularComp, AfterVi
   }
 
   agInit(params: any): void {
+    this.gridApi = params.api;
     this.columnName = params.column.colDef.headerName;
     this.controlName = this.columnName.toLowerCase();
     this.rowId = params.node.id;
