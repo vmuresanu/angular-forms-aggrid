@@ -29,7 +29,7 @@ export class CellInputRendererComponent implements ICellEditorAngularComp {
 
   agInit(params: any): void {
     this.columnName = params.column.colDef.headerName;
-    this.controlName = this.columnName.toLowerCase();
+    this.controlName =  params.column.colDef.field;
     this.rowId = params.node.id;
     this.refresh(params);
   }

@@ -17,7 +17,6 @@ export class CellInputEditorComponent implements ICellEditorAngularComp, AfterVi
   formControl: FormControl;
   controlName: string;
   value;
-  columnName: string;
   private rowId: any;
 
   @ViewChild('targetInput', { read: ViewContainerRef }) public targetInput;
@@ -28,8 +27,7 @@ export class CellInputEditorComponent implements ICellEditorAngularComp, AfterVi
 
   agInit(params: any): void {
     this.gridApi = params.api;
-    this.columnName = params.column.colDef.headerName;
-    this.controlName = this.columnName.toLowerCase();
+    this.controlName = params.column.colDef.field;
     this.rowId = params.node.id;
     this.refresh(params);
   }
