@@ -48,13 +48,31 @@ export class GridComponent implements OnInit {
       filter: true,
       editable: true,
       singleClickEdit: true
+    },
+    {
+      headerName: 'Start Date',
+      field: 'startDate',
+      sortable: true,
+      filter: true,
+      editable: true,
+      singleClickEdit: true
+    },
+    {
+      headerName: 'End Date',
+      field: 'endDate',
+      cellRendererFramework: CellInputRendererComponent,
+      cellEditorFramework: CellInputEditorComponent,
+      sortable: true,
+      filter: true,
+      editable: true,
+      singleClickEdit: true
     }
   ];
 
   rowData = [
-    { make: 'Toyota', model: 'Celica', price: 35000 },
-    { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: '', model: 'Boxter', price: 72000 }
+    { make: 'Toyota', model: 'Celica', price: 35000, startDate: '2020-03-05', endDate: '2020-04-05' },
+    { make: 'Ford', model: 'Mondeo', price: 32000, startDate: '2020-03-05', endDate: '2020-04-05' },
+    { make: '', model: 'Boxter', price: 72000, startDate: '2020-03-05', endDate: '2020-04-05' }
   ];
 
   gridOptions: GridOptions = {
@@ -78,7 +96,9 @@ export class GridComponent implements OnInit {
           const innerFormGroup = new FormGroup({
             make: new FormControl(node.data.make, Validators.required),
             model: new FormControl(node.data.model),
-            price: new FormControl(node.data.price)
+            price: new FormControl(node.data.price),
+            startDate: new FormControl(node.data.startDate),
+            endDate: new FormControl(node.data.endDate),
           });
           this.formGroup.addControl(node.id, innerFormGroup);
         });
