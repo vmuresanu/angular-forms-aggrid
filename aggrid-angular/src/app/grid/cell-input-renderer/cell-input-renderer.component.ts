@@ -1,5 +1,5 @@
-import { Component, Input, ViewChild, ViewContainerRef, ViewEncapsulation, } from '@angular/core';
-import { ICellEditorAngularComp } from 'ag-grid-angular';
+import { Component, ViewChild, ViewContainerRef, ViewEncapsulation, } from '@angular/core';
+import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,9 +12,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./cell-input-renderer.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CellInputRendererComponent implements ICellEditorAngularComp {
+export class CellInputRendererComponent implements ICellRendererAngularComp {
 
-  @Input() formGroup: FormGroup;
+  formGroup: FormGroup;
   controlName: string;
   public value;
   columnName: string;
