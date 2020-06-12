@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent, RowNode } from 'ag-grid-community';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { CellInputRendererComponent } from './cell-input-renderer/cell-input-renderer.component';
 import { CellInputEditorComponent } from './cell-input-editor/cell-input-editor.component';
+import { CellSelectRendererComponent } from './cell-select-renderer/cell-select-renderer.component';
+import { CellSelectEditorComponent } from './cell-select-editor/cell-select-editor.component';
 
 @Component({
   selector: 'app-grid',
@@ -18,12 +20,17 @@ export class GridComponent implements OnInit {
   gridApi: GridApi;
   colApi: ColumnApi;
 
+  items = Array.from({ length: 10000 }).map((_, i) => ({
+    id: i,
+    label: `Item #${i}`
+  }));
+
   columnDefs: ColDef[] = [
     {
       headerName: 'Make',
       field: 'make',
-      cellRendererFramework: CellInputRendererComponent,
-      cellEditorFramework: CellInputEditorComponent,
+      cellRendererFramework: CellSelectRendererComponent,
+      cellEditorFramework: CellSelectEditorComponent,
       sortable: true,
       filter: true,
       editable: true,
@@ -85,6 +92,7 @@ export class GridComponent implements OnInit {
   }
 
   constructor() {
+    console.log(this.items)
   }
 
   ngOnInit(): void {
@@ -104,7 +112,7 @@ export class GridComponent implements OnInit {
         });
         console.log(this.formGroup);
         this.gridApi.refreshCells({ force: true });
-        this.gridApi.sizeColumnsToFit();
+        //this.gridApi.sizeColumnsToFit();
       })
   }
 
